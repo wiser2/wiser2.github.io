@@ -23,9 +23,12 @@ Matter.Body.setInertia(ball, 7)
 
 var bet_input = document.getElementById('bet')
 
+bet_input.value = 1
 
 var score = 100.0;
 var bet = parseFloat(bet_input.value)
+
+var runs = 0;
 
 
 // make a pyramid of pegs
@@ -45,6 +48,11 @@ var right_wall = Bodies.rectangle(670, 580, 10, 50, { isStatic: true });
 Composite.add(engine.world, [left_wall, right_wall]);
 
 function reset_ball() {
+    if (runs == 0) {
+        Composite.add(engine.world, ball);
+    }
+
+    runs = runs + 1
     finished = false
     score_calculated = false
     frames = 0
@@ -97,7 +105,7 @@ function check_multiplier() {
 }
 
 // add all of the bodies to the world
-Composite.add(engine.world, [ground, ball, ceiling]);
+Composite.add(engine.world, [ground, ceiling]);
 
 // run the renderer
 Render.run(render);
