@@ -51,8 +51,7 @@ class Ball {
         this.bet = bet_input.value
         this.score_calculated = false
 
-
-        this.body = Bodies.circle(370 + (Math.random() - 0.5) * 1.5, 75 + (Math.random() - 0.5) * 1.5, 10, {
+        this.body = Bodies.circle(366.9 + (Math.random() - 0.5), 75 + Math.random(), 10, {
             collisionFilter: {
                 category: ball_category,
                 mask: peg_category | ground_category
@@ -77,7 +76,7 @@ class Ball {
 // make a pyramid of pegs
 for (var i = 0; i < 10; i++) {
     for (var j = 0; j < i; j++) {
-        const peg = Bodies.circle(400 + j * 60 - (i * 30), i * 50 + 75, 7, {
+        const peg = Bodies.circle(400 + j * 66 - (i * 33), i * 50 + 75, 7, {
             collisionFilter: {
                 category: peg_category,
                 mask: ball_category
@@ -85,7 +84,7 @@ for (var i = 0; i < 10; i++) {
         });
         Composite.add(engine.world, peg);
         if (i == 9) {
-            var wall = Bodies.rectangle(400 + j * 60 - (i * 30), 580, 10, 50, {
+            var wall = Bodies.rectangle(400 + j * 66 - (i * 33), 580, 10, 50, {
                 isStatic: true,
                 collisionFilter: {
                     category: ground_category,
@@ -97,14 +96,14 @@ for (var i = 0; i < 10; i++) {
     }
 }
 
-var left_wall = Bodies.rectangle(70, 580, 10, 50, {
+var left_wall = Bodies.rectangle(37, 580, 10, 50, {
     isStatic: true,
     collisionFilter: {
         category: ground_category,
         mask: ball_category
     }
 });
-var right_wall = Bodies.rectangle(670, 580, 10, 50, {
+var right_wall = Bodies.rectangle(703, 580, 10, 50, {
     isStatic: true,
     collisionFilter: {
         category: ground_category,
@@ -129,15 +128,15 @@ function check_multiplier(ball_obj) {
     var multiplier = 1
     var x = ball_obj.body.position.x
     if (ball_obj.body.position.y > 566) {
-        if (320 < x && x < 415) {
+        if (287 < x && x < 435) {
             multiplier = 0.1
-        } else if (260 < x && x < 320 || 425 < x && x < 480) {
+        } else if (227 < x && x < 287 || 440 < x && x < 498) {
             multiplier = 0.3
-        } else if (200 < x && x < 260 || 480 < x && x < 535) {
+        } else if (167 < x && x < 227 || 498 < x && x < 551) {
             multiplier = 1
-        } else if (140 < x && x < 200 || 545 < x && x < 595) {
+        } else if (107 < x && x < 167 || 579 < x && x < 630) {
             multiplier = 20
-        } else if (80 < x && x < 140 || 605 < x && x < 655) {
+        } else if (47 < x && x < 107 || 630 < x && x < 700) {
             multiplier = 50
         }
     }
